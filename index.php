@@ -71,6 +71,17 @@ if($invoice_id != false) {
 
         $invoice_notes = $invoice->notes;
 
+        $lines = explode( "\n", $invoice->get('csv-line-items') );
+        $headers = str_getcsv( array_shift( $lines ) );
+        $data = array();
+        foreach ( $lines as $line ) {
+            $row = array();
+            foreach ( str_getcsv( $line ) as $key => $field )
+                $row[ $headers[ $key ] ] = $field;
+            $row = array_filter( $row );
+            $data[] = $row;
+        }
+
         $client_id = $invoice->get('client-id');
 
         $client_result = $api->getClient(  $client_id  );
