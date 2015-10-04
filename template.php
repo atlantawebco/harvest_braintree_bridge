@@ -175,11 +175,51 @@
                         <h4>Payment Form</h4>
                     </div>
                     <div class="panel-body">
-                        <form id="checkout" method="post" action="/checkout">
-                            <input type="submit" class="btn btn-danger btn-lg" value="Pay <?php  echo money_format('%.2n', $due_amount); ?>">
+                        <form action="/braintree/transaction.php" method="POST" id="braintree-payment-form">
+                            <div class="form-group">
+                                <label for="cardholder_name">Card Holder Name</label><br>
+                                <input type="text" id="cardholder_name" class="form-control" size="40" autocomplete="off" name="cardholder_name" required=""><br>
+                                <small class="small">(name as shown on card)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="cc_number">Card Number</label><br>
+                                <input type="text" id="cc_number" class="form-control" size="40" autocomplete="off" data-encrypted-name="number" maxlength="19" required=""><br>
+                                <small class="small">(16/19 digit card number)</small>
+                            </div>
+                            <p><label for="month">Expiration Date</label></p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select name="month" class="form-control"><option value="">Select Month</option><option value="1">January (1)</option><option value="2">February (2)</option><option value="3">March (3)</option><option value="4">April (4)</option><option value="5">May (5)</option><option value="6">June (6)</option><option value="7">July (7)</option><option value="8">August (8)</option><option value="9">September (9)</option><option value="10">October (10)</option><option value="11">November (11)</option><option value="12">December (12)</option></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select name="year" class="form-control"><option value="">Select Year</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label><br>
+                                <input type="text" class="form-control" size="4" autocomplete="off" data-encrypted-name="cvv" maxlength="4" required=""><br>
+                                <small class="small">(3/4 digits on back of card)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment_zipcode">Billing Zip Code</label><br>
+                                <input type="text" class="form-control" size="6" autocomplete="off" name="payment_zipcode" required=""><br>
+                                <small class="small">(billing zip code linked to card)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment_email">Email Address</label><br>
+                                <input type="email" class="form-control" id="payment_email" name="payment_email" size="40" autocomplete="off" required=""><br>
+                                <small class="small">(please enter your email for a receipt)</small>
+                            </div>
+                            <input type="hidden" id="payment_amount" name="payment_amount" value="<?php echo $due_amount; ?>">
+                            <input type="hidden" id="invoice_number" value="<?php echo $invoice_id; ?>" name="invoice_number">
+                            <input type="submit" id="submit" class="btn btn-danger btn-lg" value="Pay <?php  echo money_format('%.2n', $due_amount); ?>"><p></p>
                         </form>
 
-                        <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+                        <script type='text/javascript' src='//js.braintreegateway.com/v1/braintree.js'></script>
 
                         <hr>
                         <h5> <h6 class="text-danger">Notes</h6> <?php echo $invoice_notes; ?></h5>
