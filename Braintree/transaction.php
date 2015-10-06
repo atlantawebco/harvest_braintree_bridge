@@ -78,7 +78,7 @@ if ($result_bt->success) {
     echo("<Br><br><p style=\"font-size:13px\">Error: " . $result->message."</p>");
     echo("<br/>");
     echo("<p style=\"font-size:13px\">Code: " . $result->transaction->processorResponseCode."</p>");
-	echo ("<br><br><a href=\"http://atlcode.com/bill-pay/\">Please try your payment again</a>");
+	echo ("<br><br>Please try your payment again");
 } else {
     echo("<br><br><p style=\"font-size:12px\">Validation errors:</p><br/>");
     foreach (($result_bt->errors->deepAll()) as $error) {

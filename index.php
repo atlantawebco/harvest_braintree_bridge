@@ -40,7 +40,9 @@ if($cKey != false) {
         $invoices = $result->data;
         foreach ($invoices as $invoices_key => $invoices_val) {
 
-            if($cKey == $invoices_val->client_key) {
+            //print_r($invoices_val);
+
+            if($cKey == $invoices_val->number) {
 
                 $invoice_id = $invoices_val->id;
 

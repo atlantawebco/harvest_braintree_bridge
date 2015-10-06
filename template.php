@@ -174,6 +174,8 @@
         </div>
         <div class="col-xs-7">
             <div class="span7">
+
+                <?php if($invoice_state != "paid") { ?>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h4>Payment Form</h4>
@@ -235,7 +237,7 @@
                                     form.parent().replaceWith(data);
                                 });
                             }
-                            var braintree = Braintree.create('MIIBCgKCAQEAmu7fa8cMX+cmxW2EaD1aYFqI3Ktz2wjRyvRZ2VtOV98B1ok7rUPSB1HnYYBaQLW2XFvGJ6MB0kXu1khcoyRica2g+Kf/1NwNLgqoyPkyZ3amDUKfVKpunQpRaO8ZsAOg0gMQYqjjngBN6I9Kx5pXixZkbhfC/SaoLm5nH1UXKMotqlDQi8H8S8XvAbZFebSi3Z4gL2hjFIjmKwdDVnMdwLgxCwk61kVFhF+wENXB9tloTL50GPSS+Ct+w4SRODsQokZTqaacVwTWoz6yzQXu/zr+17fHEX1Khr3qr1luwxWnXJUdrI25Kr5yfseoZc/NsKF2j82QgcuUL63tQDzPvwIDAQAB');
+                            var braintree = Braintree.create('<?php echo $braintreeClientToken; ?>');
                             braintree.onSubmitEncryptForm('braintree-payment-form', ajax_submit);
 
                             });
@@ -244,7 +246,7 @@
                         <hr>
                         <h5> <h6 class="text-danger">Notes</h6> <?php echo $invoice_notes; ?></h5>
                     </div>
-                </div>
+                </div><?php } ?>
             </div>
         </div>
     </div>
