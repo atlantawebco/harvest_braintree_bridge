@@ -17,3 +17,7 @@ Very simple to setup, that's for sure. It will take about 3 minutes or less to s
 4. Now head over to youraccount.harvestapp.com and go to Invoices >> Configure >> Messages and find "Invoice Message" within the body text box add this to your "Invoice Summary" >> To pay this invoice with your credit card please visit http://myurl.com/harvest_braintree_bridge/?key=%invoice_id%
 5. Upload all of the files to you're server in a folder called "harvest_braintree_bridge" or you can name this folder what ever you'd like to call it.
 6. That's it you are now ready to start accepting braintree payments using harvest invoices. Enjoy!
+
+### How do i get support for this bridge?
+
+Please use the github issue tracker and label your issues as "bug"
