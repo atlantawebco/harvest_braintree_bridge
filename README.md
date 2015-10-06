@@ -21,3 +21,7 @@ Very simple to setup, that's for sure. It will take about 3 minutes or less to s
 ### How do i get support for this bridge?
 
 Please use the github issue tracker and label your issues as "bug"
+
+### To-Do
+
+* Allow Partial Payments
