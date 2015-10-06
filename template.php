@@ -8,7 +8,6 @@
  * Company: Atlanta Web Certified Officials
  * W: http://www.atlcode.com
  */
-
 ?>
 
 <!doctype html>
@@ -30,14 +29,19 @@
             margin-bottom: 2px;
             padding-bottom: 2px;
             margin-top: 2px;
+        }        
+        .top {
+            background-image: url("assets/images/<?php echo $invoice_state_img; ?>");
+            background-repeat: no-repeat;
+            background-position: center;
         }
-        }
+        
     </style>
 </head>
 
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row top">
         <div class="col-xs-6">
             <h1>
                 <a href="https://twitter.com/tahirtaous">
@@ -175,7 +179,7 @@
                         <h4>Payment Form</h4>
                     </div>
                     <div class="panel-body">
-                        <form action="/braintree/transaction.php" method="POST" id="braintree-payment-form">
+                        <form action="<?php echo $current_uri_parse['path']; ?>Braintree/transaction.php" method="post" id="braintree-payment-form">
                             <div class="form-group">
                                 <label for="cardholder_name">Card Holder Name</label><br>
                                 <input type="text" id="cardholder_name" class="form-control" size="40" autocomplete="off" name="cardholder_name" required=""><br>
@@ -195,7 +199,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <select name="year" class="form-control"><option value="">Select Year</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option></select>
+                                        <select name="year" class="form-control"><option value="">Select Year</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option></select>
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +223,23 @@
                             <input type="submit" id="submit" class="btn btn-danger btn-lg" value="Pay <?php  echo money_format('%.2n', $due_amount); ?>"><p></p>
                         </form>
 
+                        <script type='text/javascript' src='//code.jquery.com/jquery-1.11.3.min.js'></script>
                         <script type='text/javascript' src='//js.braintreegateway.com/v1/braintree.js'></script>
+                        <script>
+                            $( document ).ready(function() {
+                            var ajax_submit = function (e) {
+                                form = $('#braintree-payment-form');
+                                e.preventDefault();
+                                $("#submit").attr("disabled", "disabled");
+                                $.post(form.attr('action'), form.serialize(), function (data) {
+                                    form.parent().replaceWith(data);
+                                });
+                            }
+                            var braintree = Braintree.create('MIIBCgKCAQEAmu7fa8cMX+cmxW2EaD1aYFqI3Ktz2wjRyvRZ2VtOV98B1ok7rUPSB1HnYYBaQLW2XFvGJ6MB0kXu1khcoyRica2g+Kf/1NwNLgqoyPkyZ3amDUKfVKpunQpRaO8ZsAOg0gMQYqjjngBN6I9Kx5pXixZkbhfC/SaoLm5nH1UXKMotqlDQi8H8S8XvAbZFebSi3Z4gL2hjFIjmKwdDVnMdwLgxCwk61kVFhF+wENXB9tloTL50GPSS+Ct+w4SRODsQokZTqaacVwTWoz6yzQXu/zr+17fHEX1Khr3qr1luwxWnXJUdrI25Kr5yfseoZc/NsKF2j82QgcuUL63tQDzPvwIDAQAB');
+                            braintree.onSubmitEncryptForm('braintree-payment-form', ajax_submit);
+
+                            });
+                        </script>
 
                         <hr>
                         <h5> <h6 class="text-danger">Notes</h6> <?php echo $invoice_notes; ?></h5>
