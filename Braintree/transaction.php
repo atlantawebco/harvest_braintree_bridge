@@ -6,16 +6,12 @@ require_once( dirname(dirname(__FILE__)) . '/HarvestAPI.php' );
 
 spl_autoload_register(array('HarvestAPI', 'autoload') );
 
-Braintree_Configuration::environment('sandbox');
-Braintree_Configuration::merchantId('dpj4pxjbj3cnx8xg');
-Braintree_Configuration::publicKey('4x6tx5z3bnryd28f');
-Braintree_Configuration::privateKey('56e2c31914c5326fa84f65937b307235');
+require_once( dirname(dirname(__FILE__)) . '/config.php' );
 
-//Braintree_Configuration::environment('production');
-//Braintree_Configuration::merchantId('7v6gffktf6qxg98h');
-//Braintree_Configuration::publicKey('vq8xkx9t3wz996f3');
-//Braintree_Configuration::privateKey('48ab9e13970abdffaa17f6fef835511a');
-
+Braintree_Configuration::environment($braintreeMode);
+Braintree_Configuration::merchantId($braintreeMerchantId);
+Braintree_Configuration::publicKey($braintreePublicKey);
+Braintree_Configuration::privateKey($braintreePrivateKey);
 
 $result_bt = Braintree_Transaction::sale(array(
 
@@ -42,8 +38,6 @@ $result_bt = Braintree_Transaction::sale(array(
 if ($result_bt->success) {
 
     echo("<Br><br><p style=\"font-size:13px\">Thank you for your payment! <br><Br> Your payment reference number is  #" . $result->transaction->id . " <br><Br>Please keep a note of this reference number for your payment records.<br><br>If you do not receive your payment receipt by email automatically please contact us and we will provide you with a receipt manually. <Br><BR> Note: All invoices are updated to paid status manually next business day.</p> ");
-
-    require_once( dirname(dirname(__FILE__)) . '/config.php' );
 
     $hashAuth = base64_encode($user.":".$password);
 
