@@ -44,7 +44,7 @@
     <div class="row top">
         <div class="col-xs-6">
             <h1>
-                <a href="https://twitter.com/tahirtaous">
+                <a href="#">
                     <img class="img-responsive" width="300" src="assets/images/logo.png">
                 </a>
             </h1>
