@@ -25,3 +25,4 @@ Please use the github issue tracker and label your issues as "bug"
 ### To-Do
 
 * Allow Partial Payments
+* Make use of the invoice message API
