@@ -183,14 +183,17 @@
                     <div class="panel-body">
                         <form action="<?php echo $current_uri_parse['path']; ?>Braintree/transaction.php" method="post" id="braintree-payment-form">
                             <div class="form-group">
-                                <label for="cardholder_name">Card Holder Name</label><br>
+                                <label for="cardholder_name">Card Holder Name</label>
+                                <small class="small pull-right">(name as shown on card)</small>
+                                <br>
                                 <input type="text" id="cardholder_name" class="form-control" size="40" autocomplete="off" name="cardholder_name" required=""><br>
-                                <small class="small">(name as shown on card)</small>
+
                             </div>
                             <div class="form-group">
-                                <label for="cc_number">Card Number</label><br>
+                                <label for="cc_number">Card Number</label>
+                                <small class="small pull-right">(16/19 digit card number)</small>
+                                <br>
                                 <input type="text" id="cc_number" class="form-control" size="40" autocomplete="off" data-encrypted-name="number" maxlength="19" required=""><br>
-                                <small class="small">(16/19 digit card number)</small>
                             </div>
                             <p><label for="month">Expiration Date</label></p>
                             <div class="row">
@@ -206,23 +209,32 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cvv">CVV</label><br>
+                                <label for="cvv">CVV</label>
+                                <small class="small pull-right">(3/4 digits on back of card)</small>
+                                <br>
                                 <input type="text" class="form-control" size="4" autocomplete="off" data-encrypted-name="cvv" maxlength="4" required=""><br>
-                                <small class="small">(3/4 digits on back of card)</small>
                             </div>
                             <div class="form-group">
-                                <label for="payment_zipcode">Billing Zip Code</label><br>
+                                <label for="payment_zipcode">Card Billing Zip Code</label>
+                                <small class="small pull-right">(billing zip code linked to card)</small>
+                                <br>
                                 <input type="text" class="form-control" size="6" autocomplete="off" name="payment_zipcode" required=""><br>
-                                <small class="small">(billing zip code linked to card)</small>
                             </div>
-                            <div class="form-group">
-                                <label for="payment_email">Email Address</label><br>
-                                <input type="email" class="form-control" id="payment_email" name="payment_email" size="40" autocomplete="off" required=""><br>
-                                <small class="small">(please enter your email for a receipt)</small>
-                            </div>
+                            <input type="hidden" id="payment_email" name="payment_email" value="<?php echo $client_contact_email; ?>">
                             <input type="hidden" id="payment_amount" name="payment_amount" value="<?php echo $due_amount; ?>">
                             <input type="hidden" id="invoice_number" value="<?php echo $invoice_id; ?>" name="invoice_number">
-                            <input type="submit" id="submit" class="btn btn-danger btn-lg" value="Pay <?php  echo money_format('%.2n', $due_amount); ?>"><p></p>
+
+                            <hr>
+
+                            <div class="col-md-8">
+                                 <h5 class="text-danger">Notes</h5> <h5><?php echo $invoice_notes; ?></h5>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="submit" id="submit" class="btn btn-danger btn-lg" value="Pay <?php  echo money_format('%.2n', $due_amount); ?>">
+                            </div>
+
+
                         </form>
 
                         <script type='text/javascript' src='//code.jquery.com/jquery-1.11.3.min.js'></script>
@@ -243,8 +255,8 @@
                             });
                         </script>
 
-                        <hr>
-                        <h5> <h6 class="text-danger">Notes</h6> <?php echo $invoice_notes; ?></h5>
+
+
                     </div>
                 </div><?php } ?>
             </div>
