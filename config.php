@@ -15,19 +15,19 @@ setlocale(LC_MONETARY, 'en_US.UTF-8');
 $harvestURI = ".harvestapp.com";
 
 /** @var  $braintreeClientToken */
-$braintreeClientToken = "MIIBCgKCAQEAmu7fa8cMX+cmxW2EaD1aYFqI3Ktz2wjRyvRZ2VtOV98B1ok7rUPSB1HnYYBaQLW2XFvGJ6MB0kXu1khcoyRica2g+Kf/1NwNLgqoyPkyZ3amDUKfVKpunQpRaO8ZsAOg0gMQYqjjngBN6I9Kx5pXixZkbhfC/SaoLm5nH1UXKMotqlDQi8H8S8XvAbZFebSi3Z4gL2hjFIjmKwdDVnMdwLgxCwk61kVFhF+wENXB9tloTL50GPSS+Ct+w4SRODsQokZTqaacVwTWoz6yzQXu/zr+17fHEX1Khr3qr1luwxWnXJUdrI25Kr5yfseoZc/NsKF2j82QgcuUL63tQDzPvwIDAQAB";
+$braintreeClientToken = "";
 
 /** @var  $braintreeMode */
 $braintreeMode = "sandbox"; // sandbox ?: production
 
 /** @var  $braintreeMerchantId */
-$braintreeMerchantId = "dpj4pxjbj3cnx8xg";
+$braintreeMerchantId = "";
 
 /** @var  $braintreePublicKey */
-$braintreePublicKey = "4x6tx5z3bnryd28f";
+$braintreePublicKey = "";
 
 /** @var  $braintreePrivateKey */
-$braintreePrivateKey = "56e2c31914c5326fa84f65937b307235";
+$braintreePrivateKey = "";
 
 /** @var  $ssl */
 $ssl = false; // https mode on or off
@@ -35,10 +35,10 @@ $ssl = false; // https mode on or off
 /** @var  $retry */
 $retry = false; // retry the connection if 503 on or off
 
-$company_name = "Company Name";
-$company_address = "00 Test Lane <br> Atlanta, Georgia 30305";
-$company_phone = "000-000-0000";
-$company_email = "test@mymail.com";
+$company_name = "";
+$company_address = "";
+$company_phone = "";
+$company_email = "";
 
 /** @var  $user */
 $user = ""; // account username
